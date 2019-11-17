@@ -1,0 +1,22 @@
+.login {
+	/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#0188ca+0,ffffff+100 */
+	background: #ffffff; /* Old browsers */
+	height: inherit;
+	color: #141618;
+}
+.login-container {
+	box-shadow: 0px 10px 63px rgba(0, 0, 0, 0.15);
+	background: #0188ca;
+	padding: 30px 30px;
+}
+
+.login-container__button {
+	background: red;
+	color: #ffffff;
+	font-weight: 600;
+	width: 100%;
+	text-transform: uppercase;
+}
+.login-container__logo {
+	padding: 15px;
+}

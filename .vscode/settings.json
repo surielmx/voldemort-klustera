@@ -1,0 +1,61 @@
+{
+    "workbench.colorCustomizations": {
+        "list.activeSelectionForeground": "#00BCD4",
+        "list.inactiveSelectionForeground": "#00BCD4",
+        "list.highlightForeground": "#00BCD4",
+        "scrollbarSlider.activeBackground": "#00BCD450",
+        "editorSuggestWidget.highlightForeground": "#00BCD4",
+        "textLink.foreground": "#00BCD4",
+        "activityBar.background": "#1accff",
+        "activityBar.activeBorder": "#df00ad",
+        "activityBar.foreground": "#15202b",
+        "activityBar.inactiveForeground": "#15202b99",
+        "activityBarBadge.background": "#df00ad",
+        "activityBarBadge.foreground": "#e7e7e7",
+        "titleBar.activeBackground": "#00b3e6",
+        "titleBar.inactiveBackground": "#00b3e699",
+        "titleBar.activeForeground": "#15202b",
+        "titleBar.inactiveForeground": "#15202b99",
+        "statusBar.background": "#00b3e6",
+        "statusBarItem.hoverBackground": "#008bb3",
+        "statusBar.foreground": "#15202b",
+        "panel.border": "#1accff",
+        "sideBar.border": "#1accff",
+        "editorGroup.border": "#1accff",
+        "tab.activeBorder": "#1accff"
+    },
+    "peacock.color": "#00b3e6",
+    
+        "explorer.openEditors.visible": 9,
+        "workbench.colorTheme": "Night Owl",
+        "workbench.iconTheme": "material-icon-theme",
+        "peacock.affectAccentBorders": true,
+        "peacock.affectTabActiveBorder": true,
+        "peacock.affectTitleBar": true,
+        "editor.formatOnSave": true,
+        "editor.formatOnPaste": true,
+        "editor.fontLigatures": true,
+        "editor.mouseWheelZoom": true,
+        "editor.wordWrap": "on",
+        "editor.wordWrapColumn": 200,
+        "editor.minimap.maxColumn": 200,
+        "editor.fontFamily": "Fira Code",
+        "editor.tabSize": 4,
+        "files.autoSave": "onFocusChange",
+        "search.exclude": {
+            "**/tmp": true
+        },
+        "html.format.indentInnerHtml": true,
+        "html.format.wrapLineLength": 200,
+        "prettier.requireConfig": true,
+        "javascript.updateImportsOnFileMove.enabled": "always",
+        "javascript.implicitProjectConfig.experimentalDecorators": true,
+        "editor.suggestSelection": "first",
+        "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+        "[javascript]": {
+            "files.eol": "\n",
+            "editor.defaultFormatter": "esbenp.prettier-vscode"
+        },
+        "window.zoomLevel": -1
+    
+}

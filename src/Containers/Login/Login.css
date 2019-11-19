@@ -20,3 +20,13 @@
 .login-container__logo {
 	padding: 15px;
 }
+.login-error {
+	color: #f44336;
+	margin: 0;
+	margin-top: 8px;
+	min-height: 1em;
+	text-align: left;
+	font-weight: 500;
+	line-height: 1em;
+	letter-spacing: 0.03333em;
+}

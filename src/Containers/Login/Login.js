@@ -112,7 +112,7 @@ class Login extends Component {
 										Iniciar
 									</button>
 								</div>
-								{errorSesion}
+								{errorSesion !== '' && <p className="login-error">{errorSesion}</p>}
 							</form>
 						</div>
 					</div>

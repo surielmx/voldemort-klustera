@@ -66,7 +66,6 @@ class Dashboard extends Component {
 		document.activeElement.blur();
 		this.setState({ showProgress: true });
 		const response = await updateDashboard(this.filterForm);
-		console.log(response);
 		this.handleDashboardResponse(response);
 	};
 	render() {

@@ -25,7 +25,7 @@ const Progress = ({ show = false }) => {
 						...progressStyle,
 					}}
 				>
-					<h2 className="color-gray">Procesando solicitud...</h2>
+					<h2 className="color-gray">Processing request...</h2>
 				</div>
 			</Fragment>
 		);

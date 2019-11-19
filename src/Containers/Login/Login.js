@@ -67,26 +67,27 @@ class Login extends Component {
 		const { username, password, isDisabledButton, errorSesion } = this.state;
 
 		return (
-			<div className="wrapper">
-				<div className="row middle-xs center-xs login">
-					<div className="col-xs-12 col-sm-6 col-md-4">
-						<div className="login-container">
-							<div className="login-container__logo">
-								<img
-									src="https://2017.klustera.com/wp-content/uploads/2016/02/ICONO2-e1504113264513.png"
-									alt="logo"
-									height="141"
-									className="login-container__logo-img"
-								/>
-							</div>
-							<form
-								name="login-form"
-								autoomplete="off"
-								className="login-container__form"
-								onSubmit={this.handleSubmit}
-							>
-								<fieldset className="fieldset">
-									<label htmlFor="user">Usuario</label>
+			<div className="row middle-xs center-xs login">
+				<div className="col-xs-12 col-sm-6 col-md-4">
+					<div className="login-container__logo">
+						<img
+							src="https://2017.klustera.com/wp-content/uploads/2016/02/ICONO2-e1504113264513.png"
+							alt="logo"
+							height="141"
+							className="login-container__logo-img"
+						/>
+					</div>
+					<div className="login-container bg-white">
+						<p className="fz-20">Log in to continue to dashboard</p>
+						<form
+							name="login-form"
+							autoomplete="off"
+							className="login-container__form"
+							onSubmit={this.handleSubmit}
+						>
+							<fieldset className="fieldset">
+								<label htmlFor="username">
+									Usuario
 									<input
 										value={username}
 										type="text"
@@ -94,10 +95,13 @@ class Login extends Component {
 										className="m-input m-input--in-login"
 										onChange={this.handleChangeForm}
 										required
+										placeholder="User"
 									/>
-								</fieldset>
-								<fieldset className="fieldset">
-									<label htmlFor="password">Password</label>
+								</label>
+							</fieldset>
+							<fieldset className="fieldset">
+								<label htmlFor="password">
+									Password
 									<input
 										type="password"
 										name="password"
@@ -105,16 +109,21 @@ class Login extends Component {
 										className="m-input m-input--in-login"
 										onChange={this.handleChangeForm}
 										required
+										placeholder="password"
 									/>
-								</fieldset>
-								<div className="mt-15">
-									<button disabled={isDisabledButton} type="submit">
-										Iniciar
-									</button>
-								</div>
-								{errorSesion !== '' && <p className="login-error">{errorSesion}</p>}
-							</form>
-						</div>
+								</label>
+							</fieldset>
+							<div className="mt-15">
+								<button
+									disabled={isDisabledButton}
+									type="submit"
+									className="bg-blue color-white"
+								>
+									Iniciar
+								</button>
+							</div>
+							{errorSesion !== '' && <p className="login-error">{errorSesion}</p>}
+						</form>
 					</div>
 				</div>
 			</div>

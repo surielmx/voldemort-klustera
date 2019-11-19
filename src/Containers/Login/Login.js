@@ -1,15 +1,27 @@
 import React, { Component } from 'react';
 import './Login.css';
-import getSession from './LoginActions';
+import { isAuthenticated } from '../../util/Session';
+import setSession from './LoginActions';
 
 class Login extends Component {
+	statusLogin = isAuthenticated();
 	state = {
 		isDisabledButton: true,
-		user: '',
+		errorSesion: '',
+		username: '',
 		password: '',
 	};
 	dataForm = {};
-	validateForm = newValues => {
+	componentDidMount = () => {
+		this.handleSession();
+	};
+	handleSession = () => {
+		const { push } = this.props;
+		if (this.statusLogin) {
+			push('/dashboard');
+		}
+	};
+	validateForm = () => {
 		const isValidForm = Object.values(this.dataForm).filter(input => input !== '');
 		return isValidForm.length !== 2;
 	};
@@ -23,64 +35,86 @@ class Login extends Component {
 		this.setState({
 			...this.dataForm,
 			isDisabledButton,
+			errorSesion: '',
 		});
 	};
-	handleSubmit = e => {
+	handleSessionError = ({ ok = true, statusText = '' }) => {
+		if (!ok) {
+			this.dataForm = {
+				username: '',
+				password: '',
+			};
+			const isDisabledButton = this.validateForm(this.dataForm);
+			this.setState({
+				...this.dataForm,
+				isDisabledButton,
+				errorSesion: statusText,
+			});
+		}
+	};
+	handleSubmit = async e => {
+		const { push } = this.props;
 		const { isDisabledButton } = this.state;
 		e.preventDefault();
 		if (!isDisabledButton) {
-			getSession(this.dataForm);
+			const response = await setSession(this.dataForm, push);
+			if (typeof response !== 'undefined') {
+				this.handleSessionError(response);
+			}
 		}
 	};
 	render() {
-		const { user, password, isDisabledButton } = this.state;
+		const { username, password, isDisabledButton, errorSesion } = this.state;
 
 		return (
-			<div className="row middle-xs center-xs login">
-				<div className="col-xs-12 col-sm-4">
-					<div className="login-container">
-						<div className="login-container__logo">
-							<img
-								src="https://2017.klustera.com/wp-content/uploads/2016/02/ICONO2-e1504113264513.png"
-								alt="logo"
-								height="141"
-								className="login-container__logo-img"
-							/>
-						</div>
-						<form
-							name="login-form"
-							autoomplete="off"
-							className="login-container__form"
-							onSubmit={this.handleSubmit}
-						>
-							<fieldset className="fieldset">
-								<label htmlFor="user">Usuario</label>
-								<input
-									value={user}
-									type="text"
-									name="user"
-									className="m-input m-input--in-login"
-									onChange={this.handleChangeForm}
-									required
+			<div className="wrapper">
+				<div className="row middle-xs center-xs login">
+					<div className="col-xs-12 col-sm-6 col-md-4">
+						<div className="login-container">
+							<div className="login-container__logo">
+								<img
+									src="https://2017.klustera.com/wp-content/uploads/2016/02/ICONO2-e1504113264513.png"
+									alt="logo"
+									height="141"
+									className="login-container__logo-img"
 								/>
-							</fieldset>
-							<fieldset className="fieldset">
-								<label htmlFor="password">Password</label>
-								<input
-									type="password"
-									name="password"
-									value={password}
-									className="m-input m-input--in-login"
-									onChange={this.handleChangeForm}
-									required
-								/>
-							</fieldset>
-							<div className="mt-15">
-								<button disabled={isDisabledButton} type="submit">
-									Iniciar
-								</button>
 							</div>
-						</form>
+							<form
+								name="login-form"
+								autoomplete="off"
+								className="login-container__form"
+								onSubmit={this.handleSubmit}
+							>
+								<fieldset className="fieldset">
+									<label htmlFor="user">Usuario</label>
+									<input
+										value={username}
+										type="text"
+										name="username"
+										className="m-input m-input--in-login"
+										onChange={this.handleChangeForm}
+										required
+									/>
+								</fieldset>
+								<fieldset className="fieldset">
+									<label htmlFor="password">Password</label>
+									<input
+										type="password"
+										name="password"
+										value={password}
+										className="m-input m-input--in-login"
+										onChange={this.handleChangeForm}
+										required
+									/>
+								</fieldset>
+								<div className="mt-15">
+									<button disabled={isDisabledButton} type="submit">
+										Iniciar
+									</button>
+								</div>
+								{errorSesion}
+							</form>
+						</div>
 					</div>
 				</div>
 			</div>

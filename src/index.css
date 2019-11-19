@@ -117,6 +117,9 @@ button[disabled] {
 .bg-blue {
 	background: #0188ca;
 }
+.color-gray {
+	color: #495057;
+}
 .color-white {
 	color: #ffffff;
 }
@@ -358,18 +361,25 @@ button[disabled] {
 	padding-left: 0.9375rem !important;
 }
 .wrapper {
-	margin: 15px 15px;
+	margin: 0 15px;
 	flex-direction: column;
 	height: inherit;
+}
+.react-datepicker-wrapper {
+	width: 100%;
+	margin-bottom: 15px;
 }
 
 @media (min-width: 576px) {
 	.wrapper {
-		margin: 15px auto;
+		margin: 0 auto;
 		max-width: 540px;
 	}
 }
 @media (min-width: 768px) {
+	.react-datepicker-wrapper {
+		margin: 0;
+	}
 	.wrapper {
 		max-width: 720px;
 	}

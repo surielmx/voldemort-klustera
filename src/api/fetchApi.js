@@ -1,3 +1,5 @@
+import { getToken } from '../util/Session';
+
 export const fetchLogin = async ({ data = {}, method = 'GET', params, endpoint } = {}) => {
 	const urlBase = 'https://voldemort.klustera.com';
 	const url = `${urlBase}${endpoint}`;
@@ -6,28 +8,24 @@ export const fetchLogin = async ({ data = {}, method = 'GET', params, endpoint }
 		'Content-Type': 'application/json',
 		Authorization,
 	};
-	const body = JSON.stringify(data);
-
 	try {
-		const { ok, redirected, status, statusText } = await fetch(url, {
+		const instance = await fetch(url, {
 			method,
 			params,
 			headers,
 		});
-		console.log(instance);
-		if (instance.ok) {
-			const response = await instance.json();
-			// let { payload } = response;
-			// payload = {
-			// 	...response.headerResponse,
-			// 	...response.payload,
-			// };
-			return response;
-			// return await payload;
+		if (instance.status !== 200) {
+			return {
+				ok: instance.ok,
+				status: instance.status,
+				statusText: "User doesn't exists",
+			};
 		}
-		if (status === 401) {
-			return;
-		}
+		const response = await instance.json();
+		return {
+			...response,
+			status: instance.status,
+		};
 	} catch (error) {
 		throw new Error(error);
 	}
@@ -35,11 +33,10 @@ export const fetchLogin = async ({ data = {}, method = 'GET', params, endpoint }
 
 export const fetchApi = async ({ data = {}, method = 'GET', params, endpoint } = {}) => {
 	const urlBase = 'https://voldemort.klustera.com';
-	const url = `${urlBase}${endpoint}`;
-	const Authorization = 'Basic ' + btoa(data.username + ':' + data.password);
+	const url = `${urlBase}${endpoint}${data}`;
 	const headers = {
 		'Content-Type': 'application/json',
-		Authorization,
+		'x-access-token': getToken(),
 	};
 
 	try {
@@ -48,17 +45,21 @@ export const fetchApi = async ({ data = {}, method = 'GET', params, endpoint } =
 			params,
 			headers,
 		});
-		if (instance.ok) {
+		if (instance.status !== 200) {
 			const response = await instance.json();
-			// let { payload } = response;
-			// payload = {
-			// 	...response.headerResponse,
-			// 	...response.payload,
-			// };
-			return response;
-			// return await payload;
+			return {
+				ok: instance.ok,
+				status: instance.status,
+				statusText: response.message,
+			};
 		}
+		const response = await instance.json();
+		return response;
 	} catch (error) {
-		throw new Error(error);
+		return {
+			ok: false,
+			status: 500,
+			statusText: 'error',
+		};
 	}
 };

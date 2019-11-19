@@ -1,12 +1,12 @@
 import { LOGIN_GET } from '../../Constants/endpoints';
-import getSessionApi from './LoginApi';
+import setSessionApi from './LoginApi';
 
-const getSession = dataForm => {
+const setSession = (dataForm, push) => {
 	const query = {
 		data: dataForm,
 		endpoint: LOGIN_GET,
 	};
-	getSessionApi(query);
+	return setSessionApi(query, push);
 };
 
-export default getSession;
+export default setSession;
